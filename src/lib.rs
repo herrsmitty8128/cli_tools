@@ -84,17 +84,17 @@ pub mod text {
         println!("{}HELLO WORLD{}", Style::WhiteBg, Style::Regular);
         println!("{}HELLO WORLD{}", Style::Red, Style::Regular);
     }
-}  
+}
 
 /// The pbar module contains an implementation of a process bar for use in command
 /// line programs. It can be used in single or multiple threads.
 pub mod pbar {
 
+    use crate::text::{self, Style};
     use std::fmt;
+    use std::fmt::Display;
     use std::sync::mpsc;
     use std::{io::Write, thread, time};
-    use std::fmt::Display;
-    use crate::text::{self, Style};
 
     #[derive(Debug, Copy, Clone)]
     pub enum BarChar {
@@ -106,7 +106,7 @@ pub mod pbar {
         MediumShade = 0x2592,
         DarkShade = 0x2593,
         BlackSquare = 0x25A0, //default
-        WhiteSquare = 0x25A1, 
+        WhiteSquare = 0x25A1,
         SquareWithHorizontalFill = 0x25A4,
         SquareWithVerticalFill = 0x25A5,
         SquareWithOrthogonalCrosshatchFill = 0x25A6,
@@ -145,7 +145,7 @@ pub mod pbar {
                 0x2592 => BarChar::MediumShade,
                 0x2593 => BarChar::DarkShade,
                 0x25A0 => BarChar::BlackSquare, //default
-                0x25A1 => BarChar::WhiteSquare, 
+                0x25A1 => BarChar::WhiteSquare,
                 0x25A4 => BarChar::SquareWithHorizontalFill,
                 0x25A5 => BarChar::SquareWithVerticalFill,
                 0x25A6 => BarChar::SquareWithOrthogonalCrosshatchFill,
@@ -207,7 +207,7 @@ pub mod pbar {
     impl fmt::Display for ProgressBar {
         fn fmt(&self, fmt: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
             let mut s: String = String::from(self.label);
-            if self.show_brackets{
+            if self.show_brackets {
                 s.push('[');
             }
             let count: u32 = (self.length as f32 * self.percent).round() as u32;
@@ -217,7 +217,7 @@ pub mod pbar {
             for _ in count..self.length {
                 s.push(self.trailing_char);
             }
-            if self.show_brackets{
+            if self.show_brackets {
                 s.push(']');
             }
             if self.show_percentage {
@@ -236,9 +236,7 @@ pub mod pbar {
 
     impl ProgressBar {
         /// Creates a new ```ProgressBar``` object.
-        pub fn new(
-            label: &'static str,
-        ) -> Self {
+        pub fn new(label: &'static str) -> Self {
             Self {
                 length: 50,
                 leading_char: BarChar::FullBlock.into(),
@@ -344,7 +342,7 @@ pub mod pbar {
             self.prev_text_len = n
         }
 
-        fn clear_line(&self){
+        fn clear_line(&self) {
             print!("\r");
             for _ in 0..self.prev_text_len {
                 print!(" ");

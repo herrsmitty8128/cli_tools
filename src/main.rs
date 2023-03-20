@@ -20,7 +20,7 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 /// SOFTWARE.
 use cli_tools::pbar::{Message, ProgressBar};
-use cli_tools::text::{Style, print_samples};
+use cli_tools::text::{print_samples, Style};
 use std::{sync::mpsc, thread};
 
 fn main() {
@@ -43,15 +43,13 @@ fn main() {
             }
             if n % 1000 == 0 {
                 // don't need to update the progess bar every time
-                let msg: Message =
-                    Message::Percent(n as f32 / 1000000.0_f32);
+                let msg: Message = Message::Percent(n as f32 / 1000000.0_f32);
                 tx.send(msg).unwrap();
             }
 
             if n == 500000 {
                 // don't need to update the progess bar every time
-                let msg: Message =
-                    Message::Label("Update ");
+                let msg: Message = Message::Label("Update ");
                 tx.send(msg).unwrap();
             }
         }
@@ -60,5 +58,4 @@ fn main() {
     pbar.listen(&rx);
 
     println!("\nDone working!");
-
 }
