@@ -24,12 +24,9 @@ use cli_tools::text::{print_samples, Style};
 use std::{sync::mpsc, thread};
 
 fn main() {
+    
+    println!("Here is a list of all the text styles:");
     print_samples();
-
-    let mut pbar: ProgressBar = ProgressBar::new("My Progress Bar ");
-    pbar.show_percentage(true);
-    pbar.set_interval(3);
-    pbar.set_text_style(Style::Italic);
 
     let (tx, rx) = mpsc::channel::<Message>();
 
@@ -55,6 +52,11 @@ fn main() {
         }
     });
 
+    println!("Calculating prime numbers...");
+
+    let mut pbar: ProgressBar = ProgressBar::new("My Progress Bar ");
+    pbar.set_interval(3);
+    pbar.set_text_style(Style::Italic);
     pbar.listen(&rx);
 
     println!("\nDone working!");

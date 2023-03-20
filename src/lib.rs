@@ -59,30 +59,30 @@ pub mod text {
     }
 
     pub fn print_samples() {
-        println!("{}HELLO WORLD{}", Style::Regular, Style::Regular);
-        println!("{}HELLO WORLD{}", Style::Bold, Style::Regular);
-        println!("{}HELLO WORLD{}", Style::Faint, Style::Regular);
-        println!("{}HELLO WORLD{}", Style::Italic, Style::Regular);
-        println!("{}HELLO WORLD{}", Style::Highlight, Style::Regular);
-        println!("{}HELLO WORLD{}", Style::Underline, Style::Regular);
-        println!("{}HELLO WORLD{}", Style::StrikeThrough, Style::Regular);
-        println!("{}HELLO WORLD{}", Style::DoubleUnderline, Style::Regular);
-        println!("{}HELLO WORLD{}", Style::DarkGray, Style::Regular);
-        println!("{}HELLO WORLD{}", Style::Orange, Style::Regular);
-        println!("{}HELLO WORLD{}", Style::Green, Style::Regular);
-        println!("{}HELLO WORLD{}", Style::Yellow, Style::Regular);
-        println!("{}HELLO WORLD{}", Style::Blue, Style::Regular);
-        println!("{}HELLO WORLD{}", Style::Cyan, Style::Regular);
-        println!("{}HELLO WORLD{}", Style::LightBlue, Style::Regular);
-        println!("{}HELLO WORLD{}", Style::BlackBg, Style::Regular);
-        println!("{}HELLO WORLD{}", Style::RedBg, Style::Regular);
-        println!("{}HELLO WORLD{}", Style::GreenBg, Style::Regular);
-        println!("{}HELLO WORLD{}", Style::YellowBg, Style::Regular);
-        println!("{}HELLO WORLD{}", Style::BlueBg, Style::Regular);
-        println!("{}HELLO WORLD{}", Style::CyanBg, Style::Regular);
-        println!("{}HELLO WORLD{}", Style::LightBlueBg, Style::Regular);
-        println!("{}HELLO WORLD{}", Style::WhiteBg, Style::Regular);
-        println!("{}HELLO WORLD{}", Style::Red, Style::Regular);
+        println!("{}Style::Regular{}", Style::Regular, Style::Regular);
+        println!("{}Style::Bold{}", Style::Bold, Style::Regular);
+        println!("{}Style::Faint{}", Style::Faint, Style::Regular);
+        println!("{}Style::Italic{}", Style::Italic, Style::Regular);
+        println!("{}Style::Highlight{}", Style::Highlight, Style::Regular);
+        println!("{}Style::Underline{}", Style::Underline, Style::Regular);
+        println!("{}Style::StrikeThrough{}", Style::StrikeThrough, Style::Regular);
+        println!("{}Style::DoubleUnderline{}", Style::DoubleUnderline, Style::Regular);
+        println!("{}Style::DarkGray{}", Style::DarkGray, Style::Regular);
+        println!("{}Style::Orange{}", Style::Orange, Style::Regular);
+        println!("{}Style::Green{}", Style::Green, Style::Regular);
+        println!("{}Style::Yellow{}", Style::Yellow, Style::Regular);
+        println!("{}Style::Blue{}", Style::Blue, Style::Regular);
+        println!("{}Style::Cyan{}", Style::Cyan, Style::Regular);
+        println!("{}Style::LightBlue{}", Style::LightBlue, Style::Regular);
+        println!("{}Style::BlackBg{}", Style::BlackBg, Style::Regular);
+        println!("{}Style::RedBg{}", Style::RedBg, Style::Regular);
+        println!("{}Style::GreenBg{}", Style::GreenBg, Style::Regular);
+        println!("{}Style::YellowBg{}", Style::YellowBg, Style::Regular);
+        println!("{}Style::BlueBg{}", Style::BlueBg, Style::Regular);
+        println!("{}Style::CyanBg{}", Style::CyanBg, Style::Regular);
+        println!("{}Style::LightBlueBg{}", Style::LightBlueBg, Style::Regular);
+        println!("{}Style::WhiteBg{}", Style::WhiteBg, Style::Regular);
+        println!("{}Style::Red{}", Style::Red, Style::Regular);
     }
 }
 
@@ -140,11 +140,11 @@ pub mod pbar {
                 0x0023 => BarChar::NumberSign,
                 0x003D => BarChar::EqualSign,
                 0x005F => BarChar::LowLine,
-                0x2588 => BarChar::FullBlock,
-                0x2591 => BarChar::LightShade,
+                0x2588 => BarChar::FullBlock,  //default leading char
+                0x2591 => BarChar::LightShade, //default trailing char
                 0x2592 => BarChar::MediumShade,
                 0x2593 => BarChar::DarkShade,
-                0x25A0 => BarChar::BlackSquare, //default
+                0x25A0 => BarChar::BlackSquare,
                 0x25A1 => BarChar::WhiteSquare,
                 0x25A4 => BarChar::SquareWithHorizontalFill,
                 0x25A5 => BarChar::SquareWithVerticalFill,
