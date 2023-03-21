@@ -19,12 +19,11 @@
 /// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 /// SOFTWARE.
-use cli_tools::pbar::{Message, ProgressBar};
+use cli_tools::pbar::{BarChar, Message, ProgressBar};
 use cli_tools::text::{print_samples, Style};
 use std::{sync::mpsc, thread};
 
 fn main() {
-    
     println!("Here is a list of all the text styles:");
     print_samples();
 
@@ -40,14 +39,23 @@ fn main() {
             }
             if n % 1000 == 0 {
                 // don't need to update the progess bar every time
-                let msg: Message = Message::Percent(n as f32 / 1000000.0_f32);
-                tx.send(msg).unwrap();
+                tx.send(Message::Percent(n as f32 / 1000000.0_f32)).unwrap();
+            }
+
+            if n == 250000 {
+                tx.send(Message::TextStyle(Style::Blue)).unwrap();
             }
 
             if n == 500000 {
-                // don't need to update the progess bar every time
-                let msg: Message = Message::Label("Update ");
-                tx.send(msg).unwrap();
+                tx.send(Message::TextStyle(Style::Green)).unwrap();
+                tx.send(Message::ShowBrackets(true)).unwrap();
+                tx.send(Message::TrailingChar(BarChar::LowLine)).unwrap();
+            }
+
+            if n == 750000 {
+                // change the message half way through
+                tx.send(Message::TextStyle(Style::Red)).unwrap();
+                tx.send(Message::Label("Update ")).unwrap();
             }
         }
     });
@@ -56,7 +64,7 @@ fn main() {
 
     let mut pbar: ProgressBar = ProgressBar::new("My Progress Bar ");
     pbar.set_interval(3);
-    pbar.set_text_style(Style::Italic);
+    pbar.set_style(Style::Italic);
     pbar.listen(&rx);
 
     println!("\nDone working!");
